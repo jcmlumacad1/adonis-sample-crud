@@ -17,3 +17,19 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
+
+Route.get('departments', 'DepartmentController.index')
+Route.get('departments/create', 'DepartmentController.create')
+Route.post('departments', 'DepartmentController.store')
+Route.get('departments/:id', 'DepartmentController.show')
+Route.get('departments/:id/edit', 'DepartmentController.edit')
+Route.patch('departments/:id', 'DepartmentController.update')
+Route.delete('departments/:id', 'DepartmentController.destroy')
+
+Route.get('users', 'UserController.index')
+Route.get('users/create', 'UserController.create')
+Route.post('users', 'UserController.store')
+Route.get('users/:id', 'UserController.show')
+Route.get('users/:id/edit', 'UserController.edit')
+Route.patch('users/:id', 'UserController.update')
+Route.delete('users/:id', 'UserController.destroy')

@@ -1,0 +1,28 @@
+@layout('layouts.master')
+
+@section('content')
+  <h1 class="h4">
+    <span>Departments</span>
+    <a class="btn btn-primary" href="/departments/create" role="button">Create</a>
+  </h1>
+
+  <table class="table w-50">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @each(department in departments)
+        <tr>
+          <td>{{ department.name }}</td>
+          <td>
+            <a class="btn btn-warning" href="#" role="button">Edit</a>
+            <a class="btn btn-danger" href="#" role="button">Delete</a>
+          </td>
+        </tr>
+      @endeach
+    </tbody>
+  </table>
+@endsection

@@ -1,5 +1,7 @@
 'use strict'
 
+const Department = use('App/Models/Department')
+
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
@@ -18,6 +20,12 @@ class DepartmentController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
+    let departments = await Department.all()
+    console.log('departments', departments.toJSON())
+    return view.render('departments.index', {
+      page: 'Departments',
+      departments: departments.toJSON()
+    })
   }
 
   /**
@@ -30,6 +38,9 @@ class DepartmentController {
    * @param {View} ctx.view
    */
   async create ({ request, response, view }) {
+    return view.render('departments.create', {
+      page: 'Create Department'
+    })
   }
 
   /**
@@ -41,6 +52,11 @@ class DepartmentController {
    * @param {Response} ctx.response
    */
   async store ({ request, response }) {
+    let { name } = request.all()
+    await Department.create({
+      name: name
+    })
+    return response.redirect('/departments')
   }
 
   /**
