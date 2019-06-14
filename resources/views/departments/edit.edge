@@ -2,15 +2,15 @@
 
 @section('content')
   <h1 class="h4 mb-3">
-    <span>Create Department</span>
+    <span>Edit Department</span>
   </h1>
   <div class="card w-50">
     <div class="card-body">
-      <form method="POST" action="/departments">
+      <form method="POST" action="/departments/{{ department.id }}?_method=PUT">
         {{ csrfField() }}
         <div class="form-group">
           <label for="name">Name</label>
-          <input class="form-control" id="name" name="name" required>
+          <input class="form-control" id="name" name="name" value="{{ department.name }}" required>
         </div>
         <button class="btn btn-primary">Submit</button>
       </form>

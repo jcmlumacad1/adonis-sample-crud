@@ -23,7 +23,7 @@ Route.get('departments/create', 'DepartmentController.create')
 Route.post('departments', 'DepartmentController.store')
 Route.get('departments/:id', 'DepartmentController.show')
 Route.get('departments/:id/edit', 'DepartmentController.edit')
-Route.patch('departments/:id', 'DepartmentController.update')
+Route.put('departments/:id', 'DepartmentController.update')
 Route.delete('departments/:id', 'DepartmentController.destroy')
 
 Route.get('users', 'UserController.index')

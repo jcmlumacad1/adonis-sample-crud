@@ -1,0 +1,10 @@
+@layout('layouts.master')
+
+@section('content')
+  <h1 class="h4 mb-3">
+    <span>View Department</span>
+  </h1>
+  @each((value, key) in department)
+    {{ key }}: {{ value }}<br>
+  @endeach
+@endsection

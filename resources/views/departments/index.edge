@@ -18,8 +18,17 @@
         <tr>
           <td>{{ department.name }}</td>
           <td>
-            <a class="btn btn-warning" href="#" role="button">Edit</a>
-            <a class="btn btn-danger" href="#" role="button">Delete</a>
+            <a class="btn btn-info" href="/departments/{{ department.id }}" role="button">View</a>
+            <a class="btn btn-warning" href="/departments/{{ department.id }}/edit" role="button">Edit</a>
+            <form
+              class="d-inline-block"
+              method="post"
+              action="/departments/{{ department.id }}?_method=DELETE"
+              onsubmit="return confirm('Are you sure you want to delete {{ department.name }}?')"
+            >
+              {{ csrfField() }}
+              <button class="btn btn-danger">Delete</button>
+            </form>
           </td>
         </tr>
       @endeach

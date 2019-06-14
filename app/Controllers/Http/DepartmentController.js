@@ -21,7 +21,6 @@ class DepartmentController {
    */
   async index ({ request, response, view }) {
     let departments = await Department.all()
-    console.log('departments', departments.toJSON())
     return view.render('departments.index', {
       page: 'Departments',
       departments: departments.toJSON()
@@ -69,6 +68,12 @@ class DepartmentController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
+    let { id } = params
+    let department = await Department.find(id)
+    return view.render('departments.show', {
+      department: department.toJSON(),
+      page: 'View Department'
+    })
   }
 
   /**
@@ -81,6 +86,12 @@ class DepartmentController {
    * @param {View} ctx.view
    */
   async edit ({ params, request, response, view }) {
+    let { id } = params
+    let department = await Department.find(id)
+    return view.render('departments.edit', {
+      department: department.toJSON(),
+      page: 'Edit Department'
+    })
   }
 
   /**
@@ -92,6 +103,12 @@ class DepartmentController {
    * @param {Response} ctx.response
    */
   async update ({ params, request, response }) {
+    let { id } = params
+    let { name } = request.all()
+    let department = await Department.find(id)
+    department.name = name
+    await department.save()
+    return response.redirect('/departments')
   }
 
   /**
@@ -103,6 +120,10 @@ class DepartmentController {
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
+    let { id } = params
+    let department = await Department.find(id)
+    await department.delete()
+    return response.redirect('/departments')
   }
 }
 
